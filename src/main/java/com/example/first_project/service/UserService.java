@@ -1,0 +1,28 @@
+package com.example.first_project.service;
+
+import com.example.first_project.dto.UserDTO;
+import com.example.first_project.model.UserModel;
+import com.example.first_project.repository.UserRepo;
+import jakarta.transaction.Transactional;
+import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+@Transactional
+public class UserService {
+    @Autowired
+    private UserRepo userRepo;
+
+    @Autowired
+    private ModelMapper modelMapper;
+
+    public List<UserDTO> getAllUsers() {
+      List<UserModel> userList = userRepo.findAll();
+      return modelMapper.map(userList, new TypeToken<List<UserDTO>>(){}.getType());
+    }
+
+}

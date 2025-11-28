@@ -18,8 +18,8 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("/getuser")
-    public List<UserDTO> getUser() {
+    @GetMapping("/getusers")
+    public List<UserDTO> getUsers() {
         return userService.getAllUsers();
     }
 }

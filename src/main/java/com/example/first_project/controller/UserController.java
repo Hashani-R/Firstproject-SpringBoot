@@ -3,10 +3,7 @@ package com.example.first_project.controller;
 import com.example.first_project.dto.UserDTO;
 import com.example.first_project.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -22,4 +19,21 @@ public class UserController {
     public List<UserDTO> getUsers() {
         return userService.getAllUsers();
     }
+
+    @PostMapping("/adduser")
+    public UserDTO saveUser(@RequestBody UserDTO userDTO) {
+        return userService.saveUser(userDTO);
+    }
+
+    @PutMapping("/updateuser")
+    public UserDTO updateUser(@RequestBody UserDTO userDTO) {
+        return userService.updateUser(userDTO);
+    }
+
+    @DeleteMapping("/deleteuser")
+    public String deleteUser(@RequestBody UserDTO userDTO) {
+        return userService.deleteUser(userDTO);
+    }
+
+
 }
